@@ -1,7 +1,7 @@
 import React from 'react'
 import { Platform } from 'react-native'
 import { useTheme } from 'styled-components';
-import { MaterialIcons } from '@expo/vector-icons'
+import { MaterialIcons, Feather } from '@expo/vector-icons'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 import { Dashboard } from '../screens/Dashboard';
@@ -43,8 +43,8 @@ export function AppRoutes() {
         component={Register}
         options={{
           tabBarIcon: (({ size, color }) => (
-            <MaterialIcons 
-              name="attach-money"
+            <Feather 
+              name="dollar-sign"
               size={size}
               color={color}
             />
@@ -56,7 +56,7 @@ export function AppRoutes() {
         component={Register}
         options={{
           tabBarIcon: (({ size, color }) => (
-            <MaterialIcons 
+            <Feather 
               name="pie-chart"
               size={size}
               color={color}
