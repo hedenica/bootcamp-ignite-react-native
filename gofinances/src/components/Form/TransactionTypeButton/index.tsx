@@ -10,13 +10,13 @@ import {
 
 interface Props extends RectButtonProps {
   title: string;
-  type: 'up' | 'down'
+  type: 'income' | 'outcome'
   isActive: boolean;
 }
 
 const icon = {
-  up: 'arrow-up-circle',
-  down: 'arrow-down-circle',
+  income: 'arrow-up-circle',
+  outcome: 'arrow-down-circle',
 }
 
 export function TransactionTypeButton({ title, type, isActive, ...rest }: Props) {
