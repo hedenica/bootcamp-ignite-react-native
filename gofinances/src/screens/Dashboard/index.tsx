@@ -94,32 +94,32 @@ export function Dashboard() {
     })
 
     setTransactions(formattedTransactions);
-
+    
     const lastIncome = getLastTransactionDate(currentTransactions, 'income')
     const lastOutcome = getLastTransactionDate(currentTransactions, 'outcome')
     const totalInterval = `01 á ${lastOutcome}`
-
+    
     setCardData({
       income: {
         amount: incomeTotal.toLocaleString('pt-BR', { 
           style: 'currency', 
           currency: 'BRL',
         }),
-        lastTransaction: `Última entrada dia ${lastIncome}`,
+        lastTransaction: lastIncome.includes('NaN') ? 'Nenhuma entrada' : `Última entrada dia ${lastIncome}`,
       },
       outcome: {
         amount: outcomeTotal.toLocaleString('pt-BR', { 
           style: 'currency', 
           currency: 'BRL',
         }),
-        lastTransaction: `Última saída dia ${lastOutcome}`,
+        lastTransaction: lastOutcome.includes('NaN') ? 'Nenhuma saída' : `Última saída dia ${lastOutcome}`,
       },
       total: {
         amount: (incomeTotal - outcomeTotal).toLocaleString('pt-BR', {
           style: 'currency',
           currency: 'BRL',
         }),
-        lastTransaction: totalInterval,
+        lastTransaction: totalInterval.includes('NaN') ? 'Nenhuma transação' : totalInterval,
       },
     })
 
