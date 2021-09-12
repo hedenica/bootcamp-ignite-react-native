@@ -31,6 +31,7 @@ export interface DataListProps extends TransactionCardProps {
 
 interface CardProps {
   amount: string;
+  lastTransaction: string;
 }
 
 interface CardData {
@@ -44,6 +45,21 @@ export function Dashboard() {
   const [isLoading, setLoading] = useState(true)
   const [transactions, setTransactions] = useState<DataListProps[]>([]);
   const [cardData, setCardData] = useState<CardData>({} as CardData);
+
+  function getLastTransactionDate(
+    collection: DataListProps[],
+    type: 'income' | 'outcome'
+  ) {
+    const lastTransaction = new Date(
+      Math.max.apply(Math, collection
+      .filter(transaction => transaction.type === type)
+      .map(transaction => new Date(transaction.date).getTime())));
+
+    return `${lastTransaction.getDate()} de ${lastTransaction
+      .toLocaleString('pt-BR', {
+      month: 'long'
+    })}`
+  }
 
   async function loadTransactions() {
     const dataKey = '@gofinances:transactions'
@@ -78,24 +94,32 @@ export function Dashboard() {
     })
 
     setTransactions(formattedTransactions);
+
+    const lastIncome = getLastTransactionDate(currentTransactions, 'income')
+    const lastOutcome = getLastTransactionDate(currentTransactions, 'outcome')
+    const totalInterval = `01 á ${lastOutcome}`
+
     setCardData({
       income: {
         amount: incomeTotal.toLocaleString('pt-BR', { 
           style: 'currency', 
           currency: 'BRL',
         }),
+        lastTransaction: `Última entrada dia ${lastIncome}`,
       },
       outcome: {
         amount: outcomeTotal.toLocaleString('pt-BR', { 
           style: 'currency', 
           currency: 'BRL',
         }),
+        lastTransaction: `Última saída dia ${lastOutcome}`,
       },
       total: {
         amount: (incomeTotal - outcomeTotal).toLocaleString('pt-BR', {
           style: 'currency',
           currency: 'BRL',
         }),
+        lastTransaction: totalInterval,
       },
     })
 
@@ -138,19 +162,19 @@ export function Dashboard() {
               type="income"
               title="Entradas"
               amount={cardData.income.amount}
-              lastTransaction="Última entrada dia 13 de abril"
+              lastTransaction={cardData.income.lastTransaction}
             />
             <Card
               type="outcome"
               title="Saídas"
               amount={cardData.outcome.amount}
-              lastTransaction="Última saída dia 03 de abril"
+              lastTransaction={cardData.outcome.lastTransaction}
             />
             <Card
               type="total"
               title="Total"
               amount={cardData.total.amount}
-              lastTransaction="01 à 16 de abril"
+              lastTransaction={cardData.total.lastTransaction}
             />
           </CardsContainer>
 
