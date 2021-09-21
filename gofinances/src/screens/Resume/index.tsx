@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { ActivityIndicator } from 'react-native';
 import { RFValue } from 'react-native-responsive-fontsize';
@@ -6,8 +6,9 @@ import { VictoryPie } from 'victory-native'
 import { addMonths, subMonths, format } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 
-import { useTheme } from 'styled-components'
+import { useFocusEffect  } from '@react-navigation/native'
 import { useBottomTabBarHeight } from '@react-navigation/bottom-tabs'
+import { useTheme } from 'styled-components'
 
 import { HistoryCard } from '../../components/HistoryCard'
 
@@ -46,12 +47,11 @@ interface CategoryData {
 export function Resume() {
   const theme = useTheme();
 
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [totalByCategories, setTotalByCategories] = useState<CategoryData[]>([])
 
   function handleChangeDate(action: 'next' | 'prev') {
-    setLoading(true)
     if (action === 'next') {
       setSelectedDate(addMonths(selectedDate, 1))
     } else {
@@ -60,6 +60,7 @@ export function Resume() {
   }
 
   async function getTransactions() {
+    setLoading(true)
     const dataKey = '@gofinances:transactions';
     const storedData = await AsyncStorage.getItem(dataKey);
     const currentTransactions = storedData ? JSON.parse(storedData) : [];
@@ -111,9 +112,9 @@ export function Resume() {
     setLoading(false);
   }
 
-  useEffect(() => {
+  useFocusEffect(useCallback(() => {
     getTransactions();
-  }, [selectedDate])
+  }, [selectedDate]))
 
   return (
     <Container>
@@ -158,9 +159,10 @@ export function Resume() {
                 labels: {
                   fontSize: RFValue(18),
                   fontWeight: 'bold',
-                  fill: theme.colors.text,
+                  fill: theme.colors.shape,
                 },
               }}
+              labelRadius={60}
             />
           </ChartContainer>
           {
