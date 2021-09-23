@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 
 import { useFocusEffect  } from '@react-navigation/native'
 import { useTheme } from 'styled-components';
+import { useAuth } from '../../hooks/auth'
 
 import { Card } from '../../components/Card/index';
 import { TransactionCard, TransactionCardProps } from '../../components/TransactionCard';
@@ -42,6 +43,7 @@ interface CardData {
 
 export function Dashboard() {
   const theme = useTheme()
+  const { signOut, user } = useAuth()
   const [isLoading, setLoading] = useState(true)
   const [transactions, setTransactions] = useState<DataListProps[]>([]);
   const [cardData, setCardData] = useState<CardData>({} as CardData);
@@ -119,7 +121,7 @@ export function Dashboard() {
           style: 'currency',
           currency: 'BRL',
         }),
-        lastTransaction: totalInterval.includes('NaN') ? 'Nenhuma transação' : totalInterval,
+        lastTransaction: totalInterval.includes('NaN') ? '' : totalInterval,
       },
     })
 
@@ -145,13 +147,13 @@ export function Dashboard() {
           <Header>
             <UserWrapper>
               <UserInfo>
-                <Photo source={{ uri: 'https://avatars.githubusercontent.com/u/56850413?v=4'}} />
+                <Photo source={{ uri: user.photo }} />
                 <User>
                   <UserGreeting>Olá,</UserGreeting>
-                  <UserName>Hedênica</UserName>
+                  <UserName>{user.name}</UserName>
                 </User>
               </UserInfo>
-              <LogoutButton onPress={() => {}}>
+              <LogoutButton onPress={signOut}>
                 <Icon name="power" />
               </LogoutButton>
             </UserWrapper>
