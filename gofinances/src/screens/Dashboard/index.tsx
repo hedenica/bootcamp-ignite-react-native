@@ -52,10 +52,16 @@ export function Dashboard() {
     collection: DataListProps[],
     type: 'income' | 'outcome'
   ) {
-    const lastTransaction = new Date(
-      Math.max.apply(Math, collection
+
+    const collectionFiltered = collection
       .filter(transaction => transaction.type === type)
-      .map(transaction => new Date(transaction.date).getTime())));
+
+    if (collectionFiltered.length === 0) 
+      return 0
+
+    const lastTransaction = new Date(
+      Math.max.apply(Math, collectionFiltered
+        .map(transaction => new Date(transaction.date).getTime())));
 
     return `${lastTransaction.getDate()} de ${lastTransaction
       .toLocaleString('pt-BR', {
@@ -99,7 +105,7 @@ export function Dashboard() {
     
     const lastIncome = getLastTransactionDate(currentTransactions, 'income')
     const lastOutcome = getLastTransactionDate(currentTransactions, 'outcome')
-    const totalInterval = `01 á ${lastOutcome}`
+    const totalInterval = lastOutcome === 0 ? '' : `01 á ${lastOutcome}`
     
     setCardData({
       income: {
@@ -107,21 +113,21 @@ export function Dashboard() {
           style: 'currency', 
           currency: 'BRL',
         }),
-        lastTransaction: lastIncome.includes('NaN') ? 'Nenhuma entrada' : `Última entrada dia ${lastIncome}`,
+        lastTransaction: lastIncome === 0 ? 'Nenhuma entrada' : `Última entrada dia ${lastIncome}`,
       },
       outcome: {
         amount: outcomeTotal.toLocaleString('pt-BR', { 
           style: 'currency', 
           currency: 'BRL',
         }),
-        lastTransaction: lastOutcome.includes('NaN') ? 'Nenhuma saída' : `Última saída dia ${lastOutcome}`,
+        lastTransaction: lastOutcome === 0 ? 'Nenhuma saída' : `Última saída dia ${lastOutcome}`,
       },
       total: {
         amount: (incomeTotal - outcomeTotal).toLocaleString('pt-BR', {
           style: 'currency',
           currency: 'BRL',
         }),
-        lastTransaction: totalInterval.includes('NaN') ? '' : totalInterval,
+        lastTransaction: totalInterval,
       },
     })
 
