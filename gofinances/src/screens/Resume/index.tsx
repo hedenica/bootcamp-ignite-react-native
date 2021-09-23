@@ -25,6 +25,8 @@ import {
   MonthSelectButton,
   MonthSelectIcon,
   Month,
+  EmptyState,
+  EmptyStateText,
 } from './styles'
 
 export interface TransactionData {
@@ -130,6 +132,7 @@ export function Resume() {
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{
             paddingHorizontal: 24,
+            flex: 1,
             paddingBottom: useBottomTabBarHeight(),
           }}
         >
@@ -149,32 +152,40 @@ export function Resume() {
             </MonthSelectButton>
           </MonthSelect>
 
-          <ChartContainer>
-            <VictoryPie
-              data={totalByCategories}
-              x="percent"
-              y="total"
-              colorScale={totalByCategories.map(category => category.color)}
-              style={{
-                labels: {
-                  fontSize: RFValue(18),
-                  fontWeight: 'bold',
-                  fill: theme.colors.shape,
-                },
-              }}
-              labelRadius={60}
-            />
-          </ChartContainer>
-          {
-            totalByCategories.map(category => (
-              <HistoryCard
-                key={category.key}
-                color={category.color}
-                title={category.name}
-                amount={category.totalFormatted}
+          { totalByCategories.length > 0 ? (
+            <>
+            <ChartContainer>
+              <VictoryPie
+                data={totalByCategories}
+                x="percent"
+                y="total"
+                colorScale={totalByCategories.map(category => category.color)}
+                style={{
+                  labels: {
+                    fontSize: RFValue(18),
+                    fontWeight: 'bold',
+                    fill: theme.colors.shape,
+                  },
+                }}
+                labelRadius={60}
               />
-            ))
-          }
+            </ChartContainer>
+              {
+                totalByCategories.map(category => (
+                  <HistoryCard
+                    key={category.key}
+                    color={category.color}
+                    title={category.name}
+                    amount={category.totalFormatted}
+                  />
+                ))
+              }
+            </>
+          ) : (
+            <EmptyState>
+              <EmptyStateText>Nenhuma transação cadastrada</EmptyStateText>
+            </EmptyState>
+          )}
         </Content>
       )}
     </Container>

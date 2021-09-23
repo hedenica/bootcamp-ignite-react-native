@@ -20,7 +20,7 @@ export const Header = styled.View`
 
 export const Title = styled.Text`
   font-family: ${({ theme }) => theme.fonts.regular};
-  font-size: ${RFValue(18)}px;;
+  font-size: ${RFValue(18)}px;
   color: ${({ theme }) => theme.colors.shape};
 `;
 
@@ -56,3 +56,17 @@ export const LoadContainer = styled.View`
   justify-content: center;
   align-items: center;
 `;
+
+
+export const EmptyState = styled.View`
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const EmptyStateText = styled.Text`
+  font-size: ${RFValue(24)}px;
+  font-family: ${({ theme }) => theme.fonts.regular};
+  text-align: center;
+`;
+
