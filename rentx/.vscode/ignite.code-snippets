@@ -18,5 +18,16 @@
 				"}"
 		 ],
 		 "description": "Basic React Native Interface With Styled Component"
-	 }
+	},
+	"Basic Styled Components": {
+		"prefix": "rnsc",
+		"body": [
+			"import styled from 'styled-components/native';",
+			"",
+			"export const Container = styled.View`",
+			"",
+			"`;"
+		],
+		"description": "Basic React Native Styled Component Container"
+	}
 }
