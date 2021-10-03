@@ -9,7 +9,7 @@
         "period": "Ao dia",
         "price": 120
       },
-      "fuel_type": "electric",
+      "fuel_type": "eletric_motor",
       "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/1.png",
       "accessories": [
         {
@@ -25,7 +25,7 @@
           "name": "800 HP"
         },
         {
-          "type": "electric_motor",
+          "type": "eletric_motor",
           "name": "Elétrico"
         },
         {
@@ -137,7 +137,7 @@
         "period": "Ao dia",
         "price": 120
       },
-      "fuel_type": "electric_motor",
+      "fuel_type": "eletric_motor",
       "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/4.png",
       "accessories": [
         {
@@ -153,7 +153,7 @@
           "name": "800 HP"
         },
         {
-          "type": "electric_motor",
+          "type": "eletric_motor",
           "name": "Elétrico"
         },
         {
@@ -358,7 +358,7 @@
           "period": "Ao dia",
           "price": 120
         },
-        "fuel_type": "electric",
+        "fuel_type": "eletric_motor",
         "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/1.png",
         "accessories": [
           {
@@ -374,7 +374,7 @@
             "name": "800 HP"
           },
           {
-            "type": "electric_motor",
+            "type": "eletric_motor",
             "name": "Elétrico"
           },
           {
@@ -505,7 +505,7 @@
           "period": "Ao dia",
           "price": 120
         },
-        "fuel_type": "electric",
+        "fuel_type": "eletric_motor",
         "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/1.png",
         "accessories": [
           {
@@ -521,7 +521,7 @@
             "name": "800 HP"
           },
           {
-            "type": "electric_motor",
+            "type": "eletric_motor",
             "name": "Elétrico"
           },
           {
@@ -1421,7 +1421,7 @@
           "period": "Ao dia",
           "price": 120
         },
-        "fuel_type": "electric",
+        "fuel_type": "eletric_motor",
         "thumbnail": "https://storage.googleapis.com/golden-wind/ignite/react-native/thumbnails/1.png",
         "accessories": [
           {
@@ -1437,7 +1437,7 @@
             "name": "800 HP"
           },
           {
-            "type": "electric_motor",
+            "type": "eletric_motor",
             "name": "Elétrico"
           },
           {
