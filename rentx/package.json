@@ -5,7 +5,7 @@
     "ios": "react-native run-ios",
     "web": "expo start --web",
     "start": "react-native start",
-    "api": "json-server ./src/services/server.json --host 192.168.1.11 --port 3333 --delay 700"
+    "api": "json-server ./src/services/server.json --host 192.168.1.21 --port 3333 --delay 700"
   },
   "dependencies": {
     "@expo-google-fonts/archivo": "^0.2.0",
@@ -14,12 +14,14 @@
     "@react-navigation/stack": "^6.0.9",
     "@types/react-native-calendars": "^1.1264.2",
     "axios": "^0.22.0",
+    "date-fns": "^2.24.0",
     "expo": "~42.0.1",
     "expo-app-loading": "^1.1.2",
     "expo-font": "~9.2.1",
     "expo-splash-screen": "~0.11.2",
     "expo-status-bar": "~1.0.4",
     "expo-updates": "~0.8.1",
+    "lottie-react-native": "4.0.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "~0.63.4",
