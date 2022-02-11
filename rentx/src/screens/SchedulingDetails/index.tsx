@@ -43,7 +43,7 @@ import {
 } from './styles';
 
 type NavigationProps = {
-  navigate:(screen:string) => void;
+  navigate:(screen:string, params: object) => void;
   goBack: () => void;
 }
 
@@ -94,7 +94,15 @@ export function SchedulingDetails() {
       unavailable_dates,
     })
     .then(response => {
-      navigate('SchedulingComplete')
+      navigate('Confirm', {
+        title: 'Carro alugado!', 
+        message: `
+          Agora você só precisa ir\n
+          até a concessionária da RENTX\n
+          pegar seu automóvel.
+        `, 
+        nextScreen: 'Home'
+      })
     })
     .catch(() => {
       setIsRenting(false)
