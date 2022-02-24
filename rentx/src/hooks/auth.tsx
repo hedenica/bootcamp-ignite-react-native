@@ -4,7 +4,6 @@ import React, {
   useState,
   ReactNode
 } from 'react'
-import { AxiosResponse } from 'axios';
 import api from '../services/api';
 
 interface User {

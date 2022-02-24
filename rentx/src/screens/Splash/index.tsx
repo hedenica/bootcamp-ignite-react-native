@@ -62,7 +62,9 @@ export function Splash() {
   })
 
   function startApp() {
-    navigate('Home')
+    // todo: se o usuário tiver logado tem que ir para home
+    // se o usuario tiver deslogado tem que ir para sign in
+    navigate('SignIn')
   }
 
   useEffect(() => {

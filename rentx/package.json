@@ -10,6 +10,7 @@
   "dependencies": {
     "@expo-google-fonts/archivo": "^0.2.0",
     "@expo-google-fonts/inter": "^0.2.0",
+    "@react-navigation/bottom-tabs": "^6.2.0",
     "@react-navigation/native": "^6.0.4",
     "@react-navigation/stack": "^6.0.9",
     "@types/react-native-calendars": "^1.1264.2",
