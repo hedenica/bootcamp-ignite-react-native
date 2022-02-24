@@ -71,7 +71,7 @@ export function SchedulingDetails() {
 
   const [isRenting, setIsRenting] = useState(false)
 
-  const rentalTotal = Number(dates.length * car.rent.price)
+  const rentalTotal = Number(dates.length * car.price)
 
   async function handleConfirmRental() {
     setIsRenting(true)
@@ -129,7 +129,7 @@ export function SchedulingDetails() {
           </Description>
           <Rent>
             <Period>Ao dia</Period>
-            <Price>R$ {car.rent.price}</Price>
+            <Price>R$ {car.price}</Price>
           </Rent>
         </Details>
         <Accessories>
@@ -163,7 +163,7 @@ export function SchedulingDetails() {
         <RentalPrice>
           <RentalPriceLabel>TOTAL</RentalPriceLabel>
           <RentalPriceDetails>
-            <RentalPriceQuota>{`R$ ${car.rent.price} x${dates.length} diárias`}</RentalPriceQuota>
+            <RentalPriceQuota>{`R$ ${car.price} x${dates.length} diárias`}</RentalPriceQuota>
             <RentalPriceTotal>R$ {rentalTotal}</RentalPriceTotal>
           </RentalPriceDetails>
         </RentalPrice>
