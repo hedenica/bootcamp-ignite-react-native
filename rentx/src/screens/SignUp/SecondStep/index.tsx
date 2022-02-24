@@ -7,6 +7,7 @@ import {
   Alert,
 } from 'react-native';
 import { useTheme } from 'styled-components';
+import api from '../../../services/api';
 
 import { BackButton } from '../../../components/BackButton';
 import { Bullet } from '../../../components/Bullet';
@@ -61,13 +62,22 @@ export function SecondStep() {
       return Alert.alert('Senhas divergentes')
     }
 
-    // TODO: Enviar para API
+    const { name, email, driverLicense } = user
 
-    navigate('Confirmation', {
-      title: 'Conta criada', 
-      message: `Agora é só fazer login\ne aproveitar`, 
-      nextScreen: 'SignIn'
+    await api.post('/users', {
+      name,
+      email,
+      driver_license: driverLicense,
+      password,
     })
+    .then(() => {
+      navigate('Confirmation', {
+        title: 'Conta criada', 
+        message: `Agora é só fazer login\ne aproveitar`, 
+        nextScreen: 'SignIn'
+      })
+    })
+    .catch(() => Alert.alert('Opa', 'Não foi possível cadastrar'))
   }
 
   return (
@@ -93,12 +103,14 @@ export function SecondStep() {
             <PasswordInput 
               iconName='lock'
               placeholder='Senha'
+              autoCapitalize='none'
               onChangeText={setPassword}
               value={password}
             />
             <PasswordInput 
               iconName='lock'
               placeholder='Repetir senha'
+              autoCapitalize='none'
               onChangeText={setPasswordConfirm}
               value={passwordConfirm}
             />

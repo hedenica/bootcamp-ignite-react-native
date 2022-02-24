@@ -22,6 +22,7 @@ import {
 } from './styles';
 import { Input } from '../../../components/Input';
 import { Button } from '../../../components/Button';
+import { useAuth } from '../../../hooks/auth';
 
 
 type NavigationProps = {
@@ -34,6 +35,7 @@ export function FirstStep() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [driverLicense, setDriverLicense] = useState('')
+  const { user } = useAuth()
 
   async function handleNextStep() {
     try {
@@ -92,6 +94,7 @@ export function FirstStep() {
               iconName='mail'
               placeholder='Email'
               keyboardType='email-address'
+              autoCapitalize='none'
               onChangeText={setEmail}
               value={email}
             />
