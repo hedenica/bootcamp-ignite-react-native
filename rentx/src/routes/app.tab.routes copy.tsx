@@ -10,9 +10,9 @@ import PeopleSvg from '../assets/people.svg'
 
 import { StackRoutes } from './app.stack.routes';
 
-import { Home } from '../screens/Home'
 import { MyCars } from '../screens/MyCars';
 import { Platform } from 'react-native';
+import { Profile } from '../screens/Profile/index';
 
 export function TabRoutes() {
   const theme = useTheme()
@@ -52,7 +52,7 @@ export function TabRoutes() {
       />
       <Screen 
         name="Profile" 
-        component={Home}
+        component={Profile}
         options={{
           tabBarIcon: ({ color }) => (
             <PeopleSvg width={24} height={24} fill={color} />

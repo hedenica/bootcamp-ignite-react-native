@@ -10,7 +10,7 @@ export function Routes() {
   const { user } = useAuth()
   return (
     <NavigationContainer>
-      { user ? <TabRoutes /> : <AuthRoutes />}
+      { user.id ? <TabRoutes /> : <AuthRoutes />}
     </NavigationContainer>
   );
 }

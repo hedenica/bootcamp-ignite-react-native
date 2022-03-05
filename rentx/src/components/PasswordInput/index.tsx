@@ -51,6 +51,8 @@ export function PasswordInput({ iconName, value, ...rest }:InputProps) {
         onBlur={handleInputBlur}
         secureTextEntry={isPasswordVisible}
         isFocused={isFocused}
+        placeholderTextColor={theme.colors.text_detail}
+        autoCorrect={false}
         {...rest} 
       />
       <VisibilityContainer isFocused={isFocused}>

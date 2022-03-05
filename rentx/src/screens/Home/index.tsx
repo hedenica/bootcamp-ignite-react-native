@@ -77,18 +77,27 @@ export function Home() {
   // }
 
   useEffect(() => {
+    let isMounted = true;
     async function fetchCars() {
       try {
         const { data } = await api.get('/cars')
-        setCars(data)
+        if (isMounted) {
+          setCars(data)
+        }
       } catch (error) {
         console.log( error.message)
       } finally {
-        setLoading(false)
+        if (isMounted) {
+          setLoading(false)
+        }
       }
     }
 
     fetchCars()
+
+    return () => {
+      return isMounted = false
+    }
   }, [])
 
   return (
@@ -115,8 +124,12 @@ export function Home() {
       {loading ? <LoaderAnimated /> : (
         <CarList 
           data={cars}
-          keyExtractor={(item: CarDTO) => String(item.id)}
-          renderItem={({ item }) => <Car carInfo={item} onPress={() => handleCarDetails(item)} />}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item }) => 
+            <Car 
+              carInfo={item} 
+              onPress={() => handleCarDetails(item)} 
+            />}
         />
       )}
       {/* <PanGestureHandler onGestureEvent={onGestureEvent}>
