@@ -6,6 +6,8 @@ import { Car as CarModel } from '../../database/model/Car';
 
 import { getAccessoryIcon } from '../../utils/getAccessoryIcon';
 
+import { CarDTO } from '../../dtos/CarDTO';
+
 import {
   Container,
   Details,
