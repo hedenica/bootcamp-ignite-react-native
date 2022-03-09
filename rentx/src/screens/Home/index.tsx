@@ -13,8 +13,6 @@ import { Car } from '../../components/Car';
 import { LoaderAnimated } from '../../components/LoaderAnimated';
 import { Car as CarModel } from '../../database/model/Car'
 
-import { CarDTO } from '../../dtos/CarDTO';
-
 import {
   Container,
   Header,
@@ -33,7 +31,7 @@ export function Home() {
   const [loading, setLoading] = useState(true);
   const [cars, setCars] = useState<CarModel[]>([]);
 
-  function handleCarDetails(car: CarDTO) {
+  function handleCarDetails(car: CarModel) {
     navigate('CarDetails', { car });
   }
 

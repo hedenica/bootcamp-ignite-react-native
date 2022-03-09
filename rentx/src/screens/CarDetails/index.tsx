@@ -84,7 +84,7 @@ export function CarDetails() {
   })
 
   function handleChooseRentalPeriod() {
-    navigate('Scheduling', { carUpdated });
+    navigate('Scheduling', { car });
   }
 
   useEffect(() => {
