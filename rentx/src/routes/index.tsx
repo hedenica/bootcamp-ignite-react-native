@@ -5,12 +5,15 @@ import { NavigationContainer } from '@react-navigation/native';
 import { useAuth } from '../hooks/auth';
 import { TabRoutes } from './app.tab.routes copy';
 import { AuthRoutes } from './auth.routes';
+import { LoaderAnimated } from '../components/LoaderAnimated/index';
 
 export function Routes() {
-  const { user } = useAuth()
+  const { user, loading } = useAuth()
   return (
-    <NavigationContainer>
-      { user.id ? <TabRoutes /> : <AuthRoutes />}
-    </NavigationContainer>
+    loading ? <LoaderAnimated /> : (
+      <NavigationContainer>
+        { user.id ? <TabRoutes /> : <AuthRoutes />}
+      </NavigationContainer>
+    )
   );
 }

@@ -8,6 +8,7 @@ import { Feather } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import { ImageInfo } from 'expo-image-picker/build/ImagePicker.types';
 import * as Yup from 'yup';
+import { useNetInfo } from '@react-native-community/netinfo';
 
 import {
   Container,
@@ -35,6 +36,7 @@ export function Profile() {
   const theme = useTheme();
   const navigation = useNavigation();
   const { user, signOut, updateUser } = useAuth()
+  const { isConnected } = useNetInfo()
 
   const [option, setOption] = useState<Options>('dataEdit');
   const [avatar, setAvatar] = useState(user.avatar);
@@ -43,7 +45,9 @@ export function Profile() {
 
   const handleBack = () => navigation.goBack()
 
-  const handleOptionPress = (selectedOption: Options) => setOption(selectedOption)
+  const handleOptionPress = (selectedOption: Options) => !isConnected && selectedOption === 'passwordEdit' 
+    ? Alert.alert('⚠️ Você está offline','Para mudar a senha, conecte-se a internet')
+    : setOption(selectedOption)
 
   const handleChangeAvatar = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
