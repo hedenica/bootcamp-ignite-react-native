@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { StatusBar, FlatList } from 'react-native';
-import { useNavigation } from '@react-navigation/native'
+import { useNavigation, useIsFocused } from '@react-navigation/native'
 import { AntDesign } from '@expo/vector-icons'
 import { useTheme } from 'styled-components';
 import { format, parseISO } from 'date-fns'
 
-import { CarDTO } from '../../dtos/CarDTO';
 import { Car as CarModel } from '../../database/model/Car';
 
 import api from '../../services/api';
@@ -34,14 +33,6 @@ type NavigationProps = {
   goBack: () => void;
 }
 
-interface CarProps {
-  id: string;
-  user: string;
-  car: CarDTO
-  startDate: string;
-  endDate: string;
-}
-
 interface DataProps {
   id: string;
   car: CarModel;
@@ -54,6 +45,7 @@ export function MyCars() {
   const { goBack } = useNavigation<NavigationProps>();
   const [cars, setCars] = useState<DataProps[]>([]);
   const [loading, setLoading] = useState(true);
+  const isScreenFocused = useIsFocused()
 
   useEffect(() => {
     async function fetchCars() {
@@ -77,7 +69,7 @@ export function MyCars() {
     }
 
     fetchCars()
-  }, [])
+  }, [isScreenFocused])
 
   return (
     <Container>
