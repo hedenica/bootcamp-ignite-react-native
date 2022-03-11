@@ -4,7 +4,9 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "web": "expo start --web",
-    "start": "react-native start"
+    "start": "react-native start",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "@expo-google-fonts/poppins": "^0.2.0",
@@ -46,10 +48,24 @@
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
+    "@babel/preset-typescript": "^7.16.7",
+    "@testing-library/jest-native": "^4.0.4",
+    "@testing-library/react-hooks": "^7.0.2",
+    "@testing-library/react-native": "^9.0.0",
+    "@types/jest": "^27.4.1",
     "@types/react": "~16.9.35",
     "@types/react-native": "~0.63.2",
     "@types/styled-components-react-native": "^5.1.1",
+    "react-test-renderer": "16",
+    "jest": "^27.5.1",
+    "jest-expo": "^44.0.1",
+    "jest-fetch-mock": "^3.0.3",
+    "jest-styled-components": "^7.0.8",
+    "ts-node": "^10.7.0",
     "typescript": "~4.0.0"
+  },
+  "resolutions": {
+    "@jest/create-cache-key-function": "^27.0.1"
   },
   "private": true
 }

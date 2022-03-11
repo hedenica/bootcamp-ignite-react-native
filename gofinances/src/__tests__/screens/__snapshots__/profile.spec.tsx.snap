@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Profile Screen renders correctly 1`] = `
+<View>
+  <Text
+    testID="profile-title"
+  >
+    Perfil
+  </Text>
+  <TextInput
+    allowFontScaling={true}
+    autoCorrect={false}
+    placeholder="Nome"
+    rejectResponderTermination={true}
+    testID="input-name"
+    underlineColorAndroid="transparent"
+    value="Hedênica"
+  />
+  <TextInput
+    allowFontScaling={true}
+    autoCorrect={false}
+    placeholder="Sobrenome"
+    rejectResponderTermination={true}
+    testID="input-lastname"
+    underlineColorAndroid="transparent"
+    value="Morais"
+  />
+  <View
+    accessibilityRole="button"
+    accessibilityState={Object {}}
+    accessible={true}
+    focusable={true}
+    onClick={[Function]}
+    onResponderGrant={[Function]}
+    onResponderMove={[Function]}
+    onResponderRelease={[Function]}
+    onResponderTerminate={[Function]}
+    onResponderTerminationRequest={[Function]}
+    onStartShouldSetResponder={[Function]}
+    style={
+      Object {
+        "opacity": 1,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {},
+        ]
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "color": "#007AFF",
+              "fontSize": 18,
+              "margin": 8,
+              "textAlign": "center",
+            },
+          ]
+        }
+      >
+        Salvar
+      </Text>
+    </View>
+  </View>
+</View>
+`;
