@@ -1,11 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  Platform,
-  FlatList,
+  FlatList, Platform, StyleSheet, Text, TextInput, View
 } from 'react-native';
 import { Button } from '../components/Button';
 import { SkillCard } from '../components/SkillCard';
@@ -34,7 +29,7 @@ export function Home() {
 
   function handleRemoveSkill(id: string) {
     setMySkills(currentSkills => currentSkills.filter(
-        skill => skill.id !== id,
+      skill => skill.id !== id,
     ));
   }
 
@@ -53,33 +48,40 @@ export function Home() {
 
   return (
     <View style={styles.container}>
-        <Text style={styles.title}>Welcome, Denny</Text>
-        <Text style={styles.greeting}>{greeting}</Text>
-        <TextInput
-          style={styles.input}
-          placeholder="Type new skill"
-          placeholderTextColor="#555"
-          onChangeText={setNewSkill}
-          value={newSkill}
-        />
-        <Button title="Add new skill" onPress={handleAddSkill} />
-        <Text style={[styles.title, { marginVertical: 50 }]}>
-          My Skills
-        </Text>
-        <FlatList 
-          data={mySkills}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => (
-            <SkillCard 
-              skill={item.name}
-              onPress={() => handleRemoveSkill(item.id)}
-            />
-          )}
-        />
+      <Text style={styles.title} testID="welcome">Welcome, Denny</Text>
+      <Text style={styles.greeting}>{greeting}</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Type new skill"
+        placeholderTextColor="#555"
+        onChangeText={setNewSkill}
+        value={newSkill}
+        testID="input-new"
+      />
+      <Button
+        title="Add new skill"
+        onPress={handleAddSkill}
+        testID="button-add"
+      />
+      <Text style={[styles.title, { marginVertical: 50 }]}>
+        My Skills
+      </Text>
+
+      <FlatList
+        testID="flat-list-skills"
+        data={mySkills}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <SkillCard
+            skill={item.name}
+            onPress={() => handleRemoveSkill(item.id)}
+          />
+        )}
+      />
     </View>
   );
 }
-        
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
